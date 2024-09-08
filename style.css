@@ -15,7 +15,7 @@ body {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 50px;
     padding: 10px 20px;
     cursor: pointer;
     font-size: 16px;
@@ -23,11 +23,18 @@ body {
     align-items: center;
     gap: 10px;
     position: relative;
+    transition: background-color 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+#chatbot-button:hover {
+    background-color: #0056b3;
 }
 
 #chatbot-button #bot-icon {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
     animation: shake 0.5s infinite;
 }
 
@@ -46,7 +53,7 @@ body {
     bottom: 80px;
     right: 20px;
     width: 300px;
-    max-width: 100%;
+    max-width: calc(100% - 40px); /* Make sure it fits on smaller screens */
     border: 1px solid #ddd;
     border-radius: 5px;
     background-color: #fff;
