@@ -105,10 +105,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function getRandomFallbackResponse() {
         const fallbackResponses = [
-            'I am not sure how to respond to that.',
-            'Can you please ask something else?',
-            'Let me check on that for you.',
-            'I’m here to help with specific questions. Try one of the options above.'
+            'I am not sure how to respond to that. IF YOU STILL HAVE ANY QUESTIONS FEEL FREE TO EMAIL US AT hello@iarco.org .',
+            'Can you please ask something else? IF YOU STILL HAVE ANY QUESTIONS FEEL FREE TO EMAIL US AT hello@iarco.org .',
+            'Let me check on that for you. IF YOU STILL HAVE ANY QUESTIONS FEEL FREE TO EMAIL US AT hello@iarco.org .',
+            'I’m here to help with specific questions. Try one of the options above. IF YOU STILL HAVE ANY QUESTIONS FEEL FREE TO EMAIL US AT hello@iarco.org .'
         ];
         return fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
     }
