@@ -1,0 +1,7 @@
+{
+    "name": "I am Chatbot, here to assist you.",
+    "email": "You can reach me at chatbot@example.com.",
+    "age": "I don’t have an age. I’m a chatbot created to help you!",
+    "other": "I can provide information based on your questions. Ask me anything or choose an option above.",
+    "json": "{\"name\": \"John Doe\", \"email\": \"john.doe@example.com\", \"age\": 30}"
+}
