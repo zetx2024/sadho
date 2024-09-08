@@ -85,11 +85,14 @@ footer {
     </style>
 </head>
 <body>
-        <div id="chatbot">
-        <button id="chatbot-button">Chat with us</button>
+      <div id="chatbot">
+        <button id="chatbot-button">
+            <img src="bot-icon.png" alt="Chatbot" id="bot-icon">
+            Chat with us
+        </button>
         <div id="chatbox" class="hidden">
             <div id="chatbox-header">
-                <span>Chatbot</span>
+                <span>IARCO Chatbot</span>
                 <button id="close-chatbox">X</button>
             </div>
             <div id="chatbox-content">
@@ -98,7 +101,7 @@ footer {
                     <input type="text" id="user-input" placeholder="Type a message...">
                     <button id="send-button">Send</button>
                 </div>
-                <div id="question-options" class="hidden">
+                <div id="question-options">
                     <button class="question-option">What is your name?</button>
                     <button class="question-option">What is your email?</button>
                     <button class="question-option">What is your age?</button>
