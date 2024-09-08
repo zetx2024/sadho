@@ -1,7 +1,17 @@
 {
-    "name": "I am Chatbot, here to assist you.",
-    "email": "You can reach me at chatbot@example.com.",
+    "name": "I am IARCO Chatbot, here to assist you.",
+    "email": "You can reach me at hello@iarco.org.",
     "age": "I don’t have an age. I’m a chatbot created to help you!",
-    "other": "I can provide information based on your questions. Ask me anything or choose an option above.",
-    "json": "{\"name\": \"John Doe\", \"email\": \"john.doe@example.com\", \"age\": 30}"
+    "RESEARCH TOPIC": "IARCO is unique in that participants can research any topic they want! Researchers can choose a topic they’re passionate about, something they wish to dive deeper into, or something they want to study in university. The only limit is the extent of their creativity and imagination.",
+    "WHEN IS IARCO 2024?": "IARCO 2024 occurs from September through November 2024. ",
+    "AM I ELIGIBLE TO APPLY?": "IARCO is open to all high school students aged 13-18. We also accept entries from 9th graders who have yet to turn 13, as well as recent high school graduates who are taking a gap year and are not enrolled in university credits.",
+    "COMPETITION FORMAT?": "IARCO 2024 will run across March and April, and is split into two rounds. In the 1st round, all participants must submit a 1-2 page research proposal based on the guidelines mentioned on the website. In the 2nd round, the top 10 finalists from the 1st round will have to submit a 2.5-5 minute video pitch on their research proposal.",
+    "WHAT ARE THE KEY DATES?": "<li>Early Bird registration opens on January 1st.</li><li>Early Bird registration closes on February 20th.</li><li>Regular registration open on February 21st.</li> <li>Regular registration closes on April 17th.</li><li>Bootcamps begin on April 18th.</li><li>Proposal submission deadline is on April 30th.</li><li>Qualification Winners are announced on May 6th.</li><li>Video pitch submission deadline is on May 9th.</li><li>Global Winners are announced on May 15th.</li>",
+    "Registration Fee": "<li>Early Bird Registration Fee is BDTK 500/student.</li><li>Regular Registration Fee is BDTK 700/student.</li>",
+    "HOW DO I PAY THE REGISTRATION FEE?": "The registration fee can be paid at the last step of the registration form by any credit/debit card (just like online shopping). Our payment portal is secure and we don't save any card details.",
+    "SUBMIT MY RESEARCH PROPOSAL?": "All registrants will receive an email from the IARCO team with the submission link a week before Research Proposals are due. If you don't receive any email, kindly add hello@iarco.org as a primary contact in your inbox and check your spam/promotions folder.",
+    "RESEARCH PROPOSAL PAGE LIMIT?": "The Research Proposal should not exceed 2 pages. Cover page, title, citations & references are not included in the 2 page limit.",
+    "MANDATORY TO ATTEND ALL BOOTCAMPS?": "While it is strongly encouraged for all participants to attend each of the webinars, it is not essential to attend them live. Students could have other preoccupations and those events may take place at inconvenient hours for some. Therefore, workshops will be recorded to enable them to be watched on replay.",
+    "ARE BOOTCAMPS RECORDED?": "The participant-exclusive bootcamps are available on-demand to better suit the varying time-zones and schedules of our participants. Instructions and access will be provided to participants via email .",
+    "other": "I don't know!"
 }
