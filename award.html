@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profiles and Awards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .profile-item {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            border: 3px solid #333;
+            padding: 10px;
+        }
+
+        .profile-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+
+        .badge-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+            flex-wrap: wrap;
+        }
+
+        .badge-item {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #f9f9f9;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile-text {
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .profile-text p {
+            margin: 5px 0;
+        }
+
+        .profile-name {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .profile-institution {
+            font-size: 14px;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .profile-item {
+                width: 150px;
+                height: 250px;
+            }
+
+            .badge-item {
+                width: 30px;
+                height: 30px;
+            }
+
+            .profile-name {
+                font-size: 14px;
+            }
+
+            .profile-institution {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .profile-item {
+                width: 120px;
+                height: 220px;
+            }
+
+            .badge-item {
+                width: 25px;
+                height: 25px;
+            }
+
+            .profile-name {
+                font-size: 12px;
+            }
+
+            .profile-institution {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profiles and Awards</h1>
+
+        <div class="profile-container" id="profileContainer">
+            <!-- Profile Items will be inserted here by JavaScript -->
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.0/dist/confetti.browser.min.js"></script>
+    <script>
+        // Function to create and add profile items to the page
+        function createProfileItems(students, medals) {
+            const container = document.getElementById('profileContainer');
+
+            students.forEach(student => {
+                // Create profile item
+                const profileItem = document.createElement('div');
+                profileItem.className = 'profile-item';
+
+                // Create profile image
+                const profileImg = document.createElement('img');
+                profileImg.src = student.image;
+                profileImg.alt = student.name;
+                profileImg.dataset.medal = student.medal; // Set medal type
+                profileItem.appendChild(profileImg);
+
+                // Create badge container
+                const badgeContainer = document.createElement('div');
+                badgeContainer.className = 'badge-container';
+
+                // Add badge based on medal type
+                const badgeItem = document.createElement('div');
+                badgeItem.className = 'badge-item';
+                badgeItem.innerHTML = medals[student.medal];
+                badgeContainer.appendChild(badgeItem);
+                profileItem.appendChild(badgeContainer);
+
+                // Create profile text
+                const profileText = document.createElement('div');
+                profileText.className = 'profile-text';
+                profileText.innerHTML = `
+                    <p class="profile-name">${student.name}</p>
+                    <p class="profile-institution">${student.institution}</p>
+                `;
+                profileItem.appendChild(profileText);
+
+                // Add profile item to container
+                container.appendChild(profileItem);
+
+                // Trigger confetti based on medal type
+                triggerConfetti(profileImg, student.medal);
+            });
+        }
+
+        // Function to trigger confetti effect
+        function triggerConfetti(element, medalType) {
+            let colors = [];
+            switch (medalType) {
+                case 'gold':
+                    colors = ['#FFD700', '#FFDF00']; // Gold colors
+                    break;
+                case 'silver':
+                    colors = ['#C0C0C0', '#A9A9A9']; // Silver colors
+                    break;
+                case 'bronze':
+                    colors = ['#cd7f32', '#A0522D']; // Bronze colors
+                    break;
+                default:
+                    colors = ['#00F', '#F00']; // Default colors
+                    break;
+            }
+
+            // Create a confetti effect
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: colors
+            });
+        }
+
+        // Fetch students data and medals SVGs, then create profile items
+        Promise.all([
+            fetch('students.json').then(response => response.json()),
+            fetch('medals.json').then(response => response.json())
+        ])
+        .then(([students, medals]) => createProfileItems(students, medals))
+        .catch(error => console.error('Error loading data:', error));
+    </script>
+</body>
+</html>
