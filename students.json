@@ -1,0 +1,19 @@
+[
+  {
+    "name": "John Doe",
+    "institution": "Example University",
+    "year": 2024,
+    "program": "Engineering",
+    "medal": "gold",
+    "image": "https://via.placeholder.com/150?text=John+Doe"
+  },
+  {
+    "name": "Jane Smith",
+    "institution": "Another University",
+    "year": 2024,
+    "program": "Mathematics",
+    "medal": "silver",
+    "image": "https://via.placeholder.com/150?text=Jane+Smith"
+  }
+  // Add more student data as needed
+]
