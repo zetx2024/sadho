@@ -168,8 +168,11 @@
                 const profileText = document.createElement('div');
                 profileText.className = 'profile-text';
                 profileText.innerHTML = `
+                    <p class="profile-name">${student.medal}</p>
+                    <p class="profile-name">${student.program}</p>
                     <p class="profile-name">${student.name}</p>
                     <p class="profile-institution">${student.institution}</p>
+                    
                 `;
                 profileItem.appendChild(profileText);
 
