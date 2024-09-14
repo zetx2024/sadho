@@ -10,6 +10,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            background-color: #f4f4f9;
         }
 
         .container {
@@ -27,32 +28,34 @@
 
         .profile-item {
             position: relative;
-            width: 200px;
-            height: 300px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
+            width: 250px;
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            background-color: #f9f9f9;
-            border: 3px solid #333;
-            padding: 10px;
+            background-color: #fff;
+            border: 3px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .profile-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         .profile-item img {
-            width: 100%;
-            height: auto;
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
             object-fit: cover;
+            margin-bottom: 10px;
         }
 
         .badge-container {
             display: flex;
-            gap: 10px;
+            justify-content: center;
             margin-bottom: 10px;
-            flex-wrap: wrap;
         }
 
         .badge-item {
@@ -67,28 +70,38 @@
         }
 
         .profile-text {
-            text-align: center;
             padding: 0 10px;
-        }
-
-        .profile-text p {
-            margin: 5px 0;
         }
 
         .profile-name {
             font-weight: bold;
-            font-size: 16px;
+            font-size: 18px;
+            margin: 5px 0;
         }
 
         .profile-institution {
-            font-size: 14px;
+            font-size: 16px;
             color: #555;
+        }
+
+        .profile-medal {
+            font-size: 16px;
+            color: #888;
+        }
+
+        .profile-program {
+            font-size: 14px;
+            color: #333;
         }
 
         @media (max-width: 768px) {
             .profile-item {
-                width: 150px;
-                height: 250px;
+                width: 200px;
+            }
+
+            .profile-item img {
+                width: 80px;
+                height: 80px;
             }
 
             .badge-item {
@@ -97,18 +110,24 @@
             }
 
             .profile-name {
-                font-size: 14px;
+                font-size: 16px;
             }
 
-            .profile-institution {
-                font-size: 12px;
+            .profile-institution,
+            .profile-medal,
+            .profile-program {
+                font-size: 14px;
             }
         }
 
         @media (max-width: 480px) {
             .profile-item {
-                width: 120px;
-                height: 220px;
+                width: 150px;
+            }
+
+            .profile-item img {
+                width: 60px;
+                height: 60px;
             }
 
             .badge-item {
@@ -117,11 +136,13 @@
             }
 
             .profile-name {
-                font-size: 12px;
+                font-size: 14px;
             }
 
-            .profile-institution {
-                font-size: 10px;
+            .profile-institution,
+            .profile-medal,
+            .profile-program {
+                font-size: 12px;
             }
         }
     </style>
@@ -168,11 +189,10 @@
                 const profileText = document.createElement('div');
                 profileText.className = 'profile-text';
                 profileText.innerHTML = `
-                    <p class="profile-name">${student.medal}</p>
-                    <p class="profile-name">${student.program}</p>
                     <p class="profile-name">${student.name}</p>
                     <p class="profile-institution">${student.institution}</p>
-                    
+                    <p class="profile-medal">${student.medal.charAt(0).toUpperCase() + student.medal.slice(1)} Medal</p>
+                    <p class="profile-program">${student.program}</p>
                 `;
                 profileItem.appendChild(profileText);
 
