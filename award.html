@@ -137,10 +137,10 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.0/dist/confetti.browser.min.js"></script>
     <script>
         // Function to create and add profile items to the page
-        function createProfileItems(students, medals) {
+        function createProfileItems(data) {
             const container = document.getElementById('profileContainer');
 
-            students.forEach(student => {
+            data.students.forEach(student => {
                 // Create profile item
                 const profileItem = document.createElement('div');
                 profileItem.className = 'profile-item';
@@ -159,7 +159,7 @@
                 // Add badge based on medal type
                 const badgeItem = document.createElement('div');
                 badgeItem.className = 'badge-item';
-                badgeItem.innerHTML = medals[student.medal];
+                badgeItem.innerHTML = data.medals[student.medal];
                 badgeContainer.appendChild(badgeItem);
                 profileItem.appendChild(badgeContainer);
 
@@ -207,13 +207,11 @@
             });
         }
 
-        // Fetch students data and medals SVGs, then create profile items
-        Promise.all([
-            fetch('students.json').then(response => response.json()),
-            fetch('medals.json').then(response => response.json())
-        ])
-        .then(([students, medals]) => createProfileItems(students, medals))
-        .catch(error => console.error('Error loading data:', error));
+        // Fetch student and medal data, then create profile items
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => createProfileItems(data))
+            .catch(error => console.error('Error loading data:', error));
     </script>
 </body>
 </html>
