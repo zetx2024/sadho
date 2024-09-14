@@ -45,6 +45,7 @@
             width: 100%;
             height: auto;
             border-radius: 50%;
+            object-fit: cover;
         }
 
         .badge-container {
@@ -195,15 +196,15 @@
                     break;
                 default:
                     colors = ['#00F', '#F00']; // Default colors
-                    break;
             }
 
-            // Create a confetti effect
-            confetti({
-                particleCount: 100,
-                spread: 70,
-                origin: { y: 0.6 },
-                colors: colors
+            element.addEventListener('load', function() {
+                confetti({
+                    particleCount: 100,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: colors
+                });
             });
         }
 
