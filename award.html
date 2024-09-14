@@ -55,7 +55,7 @@
         .badge-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 10px;
+            margin-bottom: 0px;
         }
 
         .badge-item {
@@ -92,6 +92,23 @@
         .profile-program {
             font-size: 14px;
             color: #333;
+        }
+
+        .view-profile-btn {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 16px;
+            font-size: 14px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .view-profile-btn:hover {
+            background-color: #0056b3;
         }
 
         @media (max-width: 768px) {
@@ -193,6 +210,7 @@
                     <p class="profile-institution">${student.institution}</p>
                     <p class="profile-medal">${student.medal.charAt(0).toUpperCase() + student.medal.slice(1)} Medal</p>
                     <p class="profile-program">${student.program}</p>
+                    <a href="${student.profileLink}" class="view-profile-btn" target="_blank">View Profile</a>
                 `;
                 profileItem.appendChild(profileText);
 
@@ -208,7 +226,7 @@
 
         // Function to trigger confetti effect
         function triggerConfetti(medalType) {
-            if (typeof confetti !== 'undefined') {
+            if (typeof confetti === 'function') {
                 let colors = [];
                 switch (medalType) {
                     case 'gold':
