@@ -129,12 +129,12 @@
 <body>
     <div class="container">
         <h1>Profiles and Awards</h1>
-
         <div class="profile-container" id="profileContainer">
             <!-- Profile Items will be inserted here by JavaScript -->
         </div>
     </div>
 
+    <!-- Include confetti library -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.0/dist/confetti.browser.min.js"></script>
     <script>
         // Function to create and add profile items to the page
@@ -177,12 +177,14 @@
                 container.appendChild(profileItem);
 
                 // Trigger confetti based on medal type
-                triggerConfetti(profileImg, student.medal);
+                profileImg.onload = function() {
+                    triggerConfetti(student.medal);
+                };
             });
         }
 
         // Function to trigger confetti effect
-        function triggerConfetti(element, medalType) {
+        function triggerConfetti(medalType) {
             let colors = [];
             switch (medalType) {
                 case 'gold':
@@ -198,13 +200,11 @@
                     colors = ['#00F', '#F00']; // Default colors
             }
 
-            element.addEventListener('load', function() {
-                confetti({
-                    particleCount: 100,
-                    spread: 70,
-                    origin: { y: 0.6 },
-                    colors: colors
-                });
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: colors
             });
         }
 
