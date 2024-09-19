@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Seal Generator</title>
     <style>
-      /* styles.css */
+        /* styles.css */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -40,12 +40,14 @@ button {
         <button id="generate">Generate Seal</button>
         <a id="download" style="display:none;">Download PDF</a>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script>
-// script.js
+        // script.js
 document.getElementById('generate').addEventListener('click', async function() {
+    const { PDFDocument } = PDFLib;
     const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+
     const pdfInput = document.getElementById('pdfInput').files[0];
     const customText = document.getElementById('customText').value;
     const logoInput = document.getElementById('logoInput').files[0];
@@ -55,19 +57,29 @@ document.getElementById('generate').addEventListener('click', async function() {
         return;
     }
 
-    // Load the PDF
+    // Load the uploaded PDF
     const pdfData = await pdfInput.arrayBuffer();
-    const pdfDoc = await jsPDF.getDocument({data: pdfData}).promise;
+    const existingPdfDoc = await PDFDocument.load(pdfData);
+    const newPdfDoc = await PDFDocument.create();
 
-    // Copy pages to the new PDF
-    for (let i = 1; i <= pdfDoc.numPages; i++) {
-        const page = await pdfDoc.getPage(i);
-        const content = await page.getTextContent();
-        doc.addPage();
-        content.items.forEach(item => {
-            doc.text(item.str, item.transform[4], item.transform[5]);
-        });
+    // Copy pages from existing PDF
+    const numPages = existingPdfDoc.getPageCount();
+    for (let i = 0; i < numPages; i++) {
+        const [copiedPage] = await newPdfDoc.copyPages(existingPdfDoc, [i]);
+        newPdfDoc.addPage(copiedPage);
     }
+
+    // Create a new jsPDF instance
+    const pdfBytes = await newPdfDoc.save();
+    const doc = new jsPDF();
+
+    // Load the PDF pages into jsPDF
+    const pdfDoc = new jsPDF();
+    const pages = await pdfDoc.splitTextToSize(pdfBytes);
+    pages.forEach(page => {
+        doc.addPage();
+        doc.text(page, 10, 10);
+    });
 
     // Generate random position for the seal
     const x = Math.random() * (doc.internal.pageSize.getWidth() - 50); // Adjust for logo size
@@ -112,7 +124,6 @@ function savePDF(doc) {
     downloadLink.textContent = 'Download PDF';
 }
 
-      
     </script>
 </body>
 </html>
